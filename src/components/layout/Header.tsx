@@ -1,5 +1,5 @@
 "use client";
-import { Bell, Layout, LogOut, Shield, User, UserCog } from "lucide-react";
+import { Bell, LogOut, Shield, User, UserCog } from "lucide-react";
 import { signOut } from "next-auth/react";
 import { useState } from "react";
 

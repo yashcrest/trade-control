@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { Card } from "../ui/card";
-import { Divide, Paperclip, Upload } from "lucide-react";
+import { Paperclip, Upload } from "lucide-react";
 import { Button } from "../ui/button";
 
 export const LicenseForm = () => {

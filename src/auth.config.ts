@@ -1,4 +1,4 @@
-import type { AuthOptions } from "next-auth";
+import type { Account, AuthOptions } from "next-auth";
 import type { JWT } from "next-auth/jwt";
 import AzureADProvider from "next-auth/providers/azure-ad";
 
@@ -18,7 +18,7 @@ export const authOptions: AuthOptions = {
     strategy: "jwt",
   },
   callbacks: {
-    async jwt({ token, account }: { token: JWT; account?: any }) {
+    async jwt({ token, account }: { token: JWT; account?: Account }) {
       if (account) {
         token.accessToken = account.access_token;
       }
