@@ -18,7 +18,7 @@ export const Sidebar = () => {
 
   return (
     <aside
-      className={`bg-gray-900 text-white transition-all duration-300  ${
+      className={`bg-gray-900 text-white transition-all duration-300   ${
         isCollapsed ? "w-16" : "w-64"
       }`}
     >

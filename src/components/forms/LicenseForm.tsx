@@ -106,7 +106,6 @@ export const LicenseForm = () => {
               <label>Value (USD) *</label>
               <input
                 type="number"
-                value={0}
                 max={40}
                 className="rounded-lg border outline-none p-1"
               />
@@ -115,7 +114,6 @@ export const LicenseForm = () => {
               <label>Quality *</label>
               <input
                 type="number"
-                value={0}
                 max={40}
                 className="rounded-lg border outline-none p-1"
               />
