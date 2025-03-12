@@ -2,19 +2,20 @@
 import { Bell, LogOut, Shield, User, UserCog } from "lucide-react";
 import { signOut } from "next-auth/react";
 import { useState } from "react";
+import Link from "next/link";
 
 const Header = () => {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   return (
     <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
       <div className="px-8">
-        <div className="flex h-16 items-center justify-between">
-          <div className="flex items-center">
+        <div className="flex h-16 items-center justify-between test-yash">
+          <Link href="/" className="flex items-center ">
             <Shield className="h-8 w-8 text-blue-600" />
-            <span className="ml-2 text-xl font-semibold text-gray-900">
+            <span className="ml-2 text-xl font-semibold text-gray-900 ">
               Export Control
             </span>
-          </div>
+          </Link>
 
           {/* right side icons */}
           <div className="flex items-center space-x-4">

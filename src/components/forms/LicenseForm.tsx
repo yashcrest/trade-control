@@ -54,7 +54,7 @@ export const LicenseForm = () => {
           <h5>Associated Parties</h5>
           <div className="grid grid-cols-2 gap-6">
             <div className="flex flex-col space-y-2">
-              <label>Organization Name *</label>
+              <label>Authorization Name *</label>
               <input
                 type="text"
                 required
@@ -164,9 +164,15 @@ export const LicenseForm = () => {
             <div>
               <div className="px-6 pt-5 pb-6 mt-1 flex justify-center border-2 border-gray-300 rounded-md border-dashed">
                 <div className="space-y-1 text-center">
-                  <Upload />
-                  <div className="flex text-sm text-gray-600">
-                    <span>Upload a file</span>
+                  <div className="flex flex-col items-center">
+                    <label htmlFor="file-upload">
+                      <Upload className=" h-12 w-12 hover:text-blue-600" />
+                      <input type="file" id="file-upload" className="sr-only" />
+                    </label>
+                    <p className="text-gray-600">
+                      Upload a file or drag and drop
+                    </p>
+                    <p className="text-xs text-gray-500">PDF, DOC up to 10MB</p>
                   </div>
                 </div>
               </div>

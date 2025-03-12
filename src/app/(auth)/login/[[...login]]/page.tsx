@@ -6,6 +6,7 @@ import { Lock, Shield } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Loading from "@/app/loading";
+import Link from "next/link";
 
 export default function Page() {
   const { isLoading: isSessionLoading } = useAppContext();
