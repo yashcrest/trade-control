@@ -10,7 +10,7 @@
     "lint": "next lint"
   },
   "engines": {
-    "node": "^18.20.3"
+    "node": "^22.x"
   },
   "dependencies": {
     "@next/env": "^15.2.1",
