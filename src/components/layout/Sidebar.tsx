@@ -9,6 +9,7 @@ import {
   Container,
   SquareUserRound,
   BookOpen,
+  Home,
 } from "lucide-react";
 import { useState } from "react";
 import Link from "next/link";
@@ -37,8 +38,8 @@ export const Sidebar = () => {
             href="/dashboard"
             className="flex items-center px-4 py-4 hover:bg-gray-800"
           >
-            <LayoutDashboard className="w-6 " />
-            {!isCollapsed && <span className="ml-3">Dashboard</span>}
+            <Home className="w-6 " />
+            {!isCollapsed && <span className="ml-3">Home</span>}
           </Link>
           <Link
             href="#"

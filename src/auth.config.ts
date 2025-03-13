@@ -5,9 +5,12 @@ import AzureADProvider from "next-auth/providers/azure-ad";
 export const authOptions: AuthOptions = {
   providers: [
     AzureADProvider({
-      clientId: process.env.YASH_AZURE_AD_CLIENT_ID as string,
-      clientSecret: process.env.YASH_AZURE_AD_CLIENT_SECRET as string,
-      tenantId: process.env.YASH_AZURE_AD_TENANT_ID as string,
+      // clientId: process.env.YASH_AZURE_AD_CLIENT_ID as string,
+      // clientSecret: process.env.YASH_AZURE_AD_CLIENT_SECRET as string,
+      // tenantId: process.env.YASH_AZURE_AD_TENANT_ID as string,
+      clientId: process.env.KYM_AZURE_AD_CLIENT_ID as string,
+      clientSecret: process.env.KYM_AZURE_AD_CLIENT_SECRET as string,
+      tenantId: process.env.KYM_AZURE_AD_TENANT_ID as string,
     }),
   ],
   pages: {
