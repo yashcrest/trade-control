@@ -42,35 +42,35 @@ export const Sidebar = () => {
             {!isCollapsed && <span className="ml-3">Home</span>}
           </Link>
           <Link
-            href="#"
+            href="/authorization"
             className="flex items-center px-4 py-4 hover:bg-gray-800"
           >
             <Database className="w-6 " />
             {!isCollapsed && <span className="ml-3">Authorization</span>}
           </Link>
           <Link
-            href="#"
+            href="/workforce"
             className="flex items-center px-4 py-4 hover:bg-gray-800"
           >
             <Target className="w-6 " />
             {!isCollapsed && <span className="ml-3">Workforce</span>}
           </Link>
           <Link
-            href="#"
+            href="/supply-chain"
             className="flex items-center px-4 py-4 hover:bg-gray-800"
           >
             <Container className="w-6 " />
             {!isCollapsed && <span className="ml-3">Supply Chain</span>}
           </Link>
           <Link
-            href="#"
+            href="/training"
             className="flex items-center px-4 py-4 hover:bg-gray-800"
           >
             <SquareUserRound className="w-6 " />
             {!isCollapsed && <span className="ml-3">Training</span>}
           </Link>
           <Link
-            href="#"
+            href="/information-management"
             className="flex items-center px-4 py-4 hover:bg-gray-800"
           >
             <BookOpen className="w-6 " />
@@ -79,14 +79,14 @@ export const Sidebar = () => {
             )}
           </Link>
           <Link
-            href="#"
+            href="/reporting"
             className="flex items-center px-4 py-4 hover:bg-gray-800"
           >
             <SubtitlesIcon className="w-6 " />
             {!isCollapsed && <span className="ml-3">Reporting</span>}
           </Link>
           <Link
-            href="#"
+            href="/administration"
             className="flex items-center px-4 py-4 hover:bg-gray-800"
           >
             <Shield className="w-6 " />

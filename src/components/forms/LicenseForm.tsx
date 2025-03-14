@@ -10,6 +10,11 @@ export const LicenseForm = () => {
     console.log("trying to submit a form");
   };
 
+  // for dragging file into DOM
+  const handleDragover = (e) => {
+    //
+  };
+
   return (
     <div className="space-y-2">
       <h4>Create new license form</h4>
@@ -161,7 +166,7 @@ export const LicenseForm = () => {
                 className="border outline-none rounded-md p-1"
               />
             </div>
-            <div>
+            <div onDragOverCapture={handleDragover}>
               <div className="px-6 pt-5 pb-6 mt-1 flex justify-center border-2 border-gray-300 rounded-md border-dashed">
                 <div className="space-y-1 text-center">
                   <div className="flex flex-col items-center">
