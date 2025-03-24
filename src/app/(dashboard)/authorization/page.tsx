@@ -1,9 +1,13 @@
+import { CardSection } from "@/modules/authorization/CardSection"
+import { ChartArea } from "@/modules/authorization/chart-area"
+
 const Authorization = () => {
   return (
-    <div className="text-center h-full">
-      <h1>Coming Soon!</h1>
-    </div>
-  );
-};
+    <>
+      <CardSection />
+      <ChartArea />
+    </>
+  )
+}
 
-export default Authorization;
+export default Authorization

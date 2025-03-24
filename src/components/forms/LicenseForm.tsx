@@ -1,26 +1,26 @@
-"use client";
-import React from "react";
-import { Card } from "../ui/card";
-import { Paperclip, Upload } from "lucide-react";
-import { Button } from "../ui/button";
+"use client"
+import React from "react"
+import { Card, CardHeader, CardTitle } from "../ui/card"
+import { Paperclip, Upload } from "lucide-react"
+import { Button } from "../ui/button"
 
 export const LicenseForm = () => {
   const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("trying to submit a form");
-  };
+    e.preventDefault()
+    console.log("trying to submit a form")
+  }
 
   // for dragging file into DOM
   const handleDragover = (e) => {
     //
-  };
+  }
 
   return (
     <div className="space-y-2">
       <h4>Create new license form</h4>
       <form onSubmit={handleSubmit}>
         <Card className="p-6 space-y-4">
-          <h5>Basic License Information</h5>
+          <CardTitle>Basic License Information</CardTitle>
           <div className="grid grid-cols-2 gap-6">
             <div className="flex flex-col space-y-2">
               <label>License Type *</label>
@@ -198,5 +198,5 @@ export const LicenseForm = () => {
         </Card>
       </form>
     </div>
-  );
-};
+  )
+}
