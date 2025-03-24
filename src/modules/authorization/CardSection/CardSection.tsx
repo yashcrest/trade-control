@@ -16,6 +16,7 @@ import {
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { toast } from "sonner"
+import { Badge } from "@/components/ui/badge"
 
 const CardSection = () => {
   const handleClick = () => {
@@ -41,7 +42,9 @@ const CardSection = () => {
                 <CardTitle>350 People</CardTitle>
               </div>
               <div>
-                <TrendingUpIcon className="size-4" />
+                <Badge variant="outline">
+                  <TrendingUpIcon className="size-4" />
+                </Badge>
               </div>
             </div>
           </CardHeader>
@@ -61,7 +64,9 @@ const CardSection = () => {
                 <CardTitle>67 People</CardTitle>
               </div>
               <div>
-                <ShieldAlert className="size-4" />
+                <Badge variant="outline">
+                  <ShieldAlert className="size-4" />
+                </Badge>
               </div>
             </div>
           </CardHeader>
@@ -79,7 +84,9 @@ const CardSection = () => {
                 <CardTitle>30 People</CardTitle>
               </div>
               <div>
-                <Send className="size-4" />
+                <Badge variant="outline">
+                  <Send className="size-4" />
+                </Badge>
               </div>
             </div>
           </CardHeader>
@@ -99,7 +106,9 @@ const CardSection = () => {
                 <CardTitle>10 People</CardTitle>
               </div>
               <div>
-                <CircleDotDashed className=" size-4" />
+                <Badge variant="outline">
+                  <CircleDotDashed className=" size-4" />
+                </Badge>
               </div>
             </div>
           </CardHeader>
