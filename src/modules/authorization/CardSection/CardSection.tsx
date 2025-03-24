@@ -6,7 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
+
 import React from "react"
 import {
   TrendingUpIcon,
@@ -34,85 +34,73 @@ const CardSection = () => {
         <Card>
           <CardHeader>
             <div className="flex justify-between">
-              <CardTitle className=" font-semibold tabular-nums">
-                Active Authorisations
-              </CardTitle>
+              <div className="space-y-4">
+                <CardDescription className="font-semibold tabular-nums">
+                  Active Authorisations
+                </CardDescription>
+                <CardTitle>350 People</CardTitle>
+              </div>
               <div>
-                <Badge
-                  variant="outline"
-                  className="flex gap-1 rounded-lg text-xs"
-                >
-                  <TrendingUpIcon className="size-4" />
-                  +5.5%
-                </Badge>
+                <TrendingUpIcon className="size-4" />
               </div>
             </div>
           </CardHeader>
           <CardFooter className="flex-col items-start gap-1 text-sm">
-            <div>350 people</div>
+            <p>Current Active Authorization</p>
           </CardFooter>
         </Card>
         <Card>
           <CardHeader>
             <div className="flex justify-between">
-              <CardTitle className=" font-semibold tabular-nums">
-                Expiring Authorisations
-              </CardTitle>
+              <div className="space-y-4">
+                <CardDescription className=" font-semibold tabular-nums">
+                  Expiring Authorisations
+                </CardDescription>
+                <CardTitle>67 People</CardTitle>
+              </div>
               <div>
-                <Badge
-                  variant="outline"
-                  className="flex gap-1 rounded-lg text-xs"
-                >
-                  <ShieldAlert className="size-4" />
-                  +5.5%
-                </Badge>
+                <ShieldAlert className="size-4" />
               </div>
             </div>
           </CardHeader>
           <CardFooter className="flex-col items-start gap-1 text-sm">
-            <div>67 people</div>
+            <p>Expiring in next 60 days</p>
           </CardFooter>
         </Card>
         <Card>
           <CardHeader>
             <div className="flex justify-between">
-              <CardTitle className=" font-semibold tabular-nums">
-                Submitted Authorisations
-              </CardTitle>
+              <div className="space-y-4">
+                <CardDescription className=" font-semibold tabular-nums">
+                  Submitted Authorisations
+                </CardDescription>
+                <CardTitle>30 People</CardTitle>
+              </div>
               <div>
-                <Badge
-                  variant="outline"
-                  className="flex gap-1 rounded-lg text-xs"
-                >
-                  <Send className="size-4" />
-                  +5.5%
-                </Badge>
+                <Send className="size-4" />
               </div>
             </div>
           </CardHeader>
           <CardFooter className="flex-col items-start gap-1 text-sm">
-            <div>30 people</div>
+            <p>Recently submitted for approval</p>
           </CardFooter>
         </Card>
         <Card>
           <CardHeader>
             <div className="flex justify-between">
-              <CardTitle className=" font-semibold tabular-nums">
-                Pending Authorization
-              </CardTitle>
+              <div className="space-y-4">
+                <CardDescription className=" font-semibold tabular-nums">
+                  Pending Authorization
+                </CardDescription>
+                <CardTitle>10 People</CardTitle>
+              </div>
               <div>
-                <Badge
-                  variant="outline"
-                  className="flex  gap-1 rounded-lg text-xs"
-                >
-                  <CircleDotDashed className=" size-4" />
-                  5pending
-                </Badge>
+                <CircleDotDashed className=" size-4" />
               </div>
             </div>
           </CardHeader>
           <CardFooter className="flex-col items-start gap-1 text-sm">
-            <div>10 people</div>
+            <p>Awaiting review or action</p>
           </CardFooter>
         </Card>
       </div>
