@@ -114,6 +114,7 @@ const CardSection = () => {
           </CardHeader>
           <CardFooter className="gap-1 text-sm">
             <p className="text-muted-foreground">Awaiting review or action</p>
+            <p>test</p>
           </CardFooter>
         </Card>
       </div>
