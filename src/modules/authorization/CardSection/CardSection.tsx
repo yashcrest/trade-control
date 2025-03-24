@@ -45,7 +45,7 @@ const CardSection = () => {
               </div>
             </div>
           </CardHeader>
-          <CardFooter className="flex-col items-start gap-1 text-sm">
+          <CardFooter className="gap-1 text-sm">
             <p className="text-muted-foreground">
               Current Active Authorization
             </p>
@@ -65,7 +65,7 @@ const CardSection = () => {
               </div>
             </div>
           </CardHeader>
-          <CardFooter className="flex-col items-start gap-1 text-sm">
+          <CardFooter className="gap-1 text-sm">
             <p className="text-muted-foreground">Expiring in next 60 days</p>
           </CardFooter>
         </Card>
@@ -83,7 +83,7 @@ const CardSection = () => {
               </div>
             </div>
           </CardHeader>
-          <CardFooter className="items-start gap-1 text-sm">
+          <CardFooter className="gap-1 text-sm">
             <p className="text-muted-foreground">
               Recently submitted for approval
             </p>
@@ -103,7 +103,7 @@ const CardSection = () => {
               </div>
             </div>
           </CardHeader>
-          <CardFooter className="flex-col items-start gap-1 text-sm">
+          <CardFooter className="gap-1 text-sm">
             <p className="text-muted-foreground">Awaiting review or action</p>
           </CardFooter>
         </Card>
