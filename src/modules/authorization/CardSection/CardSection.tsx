@@ -39,7 +39,7 @@ const CardSection = () => {
                 <CardDescription className="font-semibold tabular-nums">
                   Active Authorisations
                 </CardDescription>
-                <CardTitle>350 People</CardTitle>
+                <CardTitle>350</CardTitle>
               </div>
               <div>
                 <Badge variant="outline">
@@ -61,7 +61,7 @@ const CardSection = () => {
                 <CardDescription className=" font-semibold tabular-nums">
                   Expiring Authorisations
                 </CardDescription>
-                <CardTitle>67 People</CardTitle>
+                <CardTitle>67</CardTitle>
               </div>
               <div>
                 <Badge variant="outline">
@@ -81,7 +81,7 @@ const CardSection = () => {
                 <CardDescription className=" font-semibold tabular-nums">
                   Submitted Authorisations
                 </CardDescription>
-                <CardTitle>30 People</CardTitle>
+                <CardTitle>30</CardTitle>
               </div>
               <div>
                 <Badge variant="outline">
@@ -103,7 +103,7 @@ const CardSection = () => {
                 <CardDescription className=" font-semibold tabular-nums">
                   Pending Authorization
                 </CardDescription>
-                <CardTitle>10 People</CardTitle>
+                <CardTitle>10</CardTitle>
               </div>
               <div>
                 <Badge variant="outline">
