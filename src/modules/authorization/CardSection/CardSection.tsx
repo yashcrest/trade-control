@@ -13,6 +13,7 @@ import {
   CircleDotDashed,
   Send,
   ShieldAlert,
+  Users,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { toast } from "sonner"
@@ -39,7 +40,10 @@ const CardSection = () => {
                 <CardDescription className="font-semibold tabular-nums">
                   Active Authorisations
                 </CardDescription>
-                <CardTitle>350</CardTitle>
+                <CardTitle className="flex items-center gap-3">
+                  <Users />
+                  350
+                </CardTitle>
               </div>
               <div>
                 <Badge variant="outline">
@@ -61,7 +65,10 @@ const CardSection = () => {
                 <CardDescription className=" font-semibold tabular-nums">
                   Expiring Authorisations
                 </CardDescription>
-                <CardTitle>67</CardTitle>
+                <CardTitle className="flex items-center gap-3">
+                  <Users />
+                  67
+                </CardTitle>
               </div>
               <div>
                 <Badge variant="outline">
@@ -81,7 +88,10 @@ const CardSection = () => {
                 <CardDescription className=" font-semibold tabular-nums">
                   Submitted Authorisations
                 </CardDescription>
-                <CardTitle>30</CardTitle>
+                <CardTitle className="flex items-center gap-3">
+                  <Users />
+                  30
+                </CardTitle>
               </div>
               <div>
                 <Badge variant="outline">
@@ -103,7 +113,10 @@ const CardSection = () => {
                 <CardDescription className=" font-semibold tabular-nums">
                   Pending Authorization
                 </CardDescription>
-                <CardTitle>10</CardTitle>
+                <CardTitle className="flex items-center gap-3">
+                  <Users />
+                  10
+                </CardTitle>
               </div>
               <div>
                 <Badge variant="outline">
