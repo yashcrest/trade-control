@@ -125,7 +125,7 @@ const LicenseTable = () => {
             </tbody>
           </table>
         </div>
-        {filteredAndSortedData.length < 10 && (
+        {filteredAndSortedData.length > 10 && (
           <div className="p-4 border-t">
             <Button variant="secondary" onClick={() => setShowAll(!showAll)}>
               {showAll ? (
