@@ -17,6 +17,10 @@ import { useRouter } from "next/navigation"
 const CardSection = () => {
   const router = useRouter()
 
+  const handleClick = () => {
+    toast.info("Card Clicked")
+  }
+
   return (
     <div className="space-y-5">
       <div className="flex">
@@ -30,7 +34,7 @@ const CardSection = () => {
         </div>
       </div>
       <div className="grid grid-cols-4 gap-4 px-4 cursor-pointer">
-        <Card>
+        <Card onClick={handleClick}>
           <CardHeader>
             <div className="flex justify-between">
               <div className="space-y-4">
@@ -55,7 +59,7 @@ const CardSection = () => {
             </p>
           </CardFooter>
         </Card>
-        <Card>
+        <Card onClick={handleClick}>
           <CardHeader>
             <div className="flex justify-between">
               <div className="space-y-4">
@@ -78,7 +82,7 @@ const CardSection = () => {
             <p className="text-muted-foreground">Expiring in next 60 days</p>
           </CardFooter>
         </Card>
-        <Card>
+        <Card onClick={handleClick}>
           <CardHeader>
             <div className="flex justify-between">
               <div className="space-y-4">
@@ -103,7 +107,7 @@ const CardSection = () => {
             </p>
           </CardFooter>
         </Card>
-        <Card>
+        <Card onClick={handleClick}>
           <CardHeader>
             <div className="flex justify-between">
               <div className="space-y-4">
