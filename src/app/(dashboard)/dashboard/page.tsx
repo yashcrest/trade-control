@@ -1,11 +1,11 @@
-"use client";
-import React from "react";
-import Card from "@/components/Card";
-import { Button } from "@/components/ui/button";
-import { useRouter } from "next/navigation";
+"use client"
+import React from "react"
+import Card from "@/components/Card"
+import { Button } from "@/components/ui/button"
+import { useRouter } from "next/navigation"
 
 const Page = () => {
-  const router = useRouter();
+  const router = useRouter()
   return (
     <>
       <div>
@@ -21,13 +21,13 @@ const Page = () => {
 
         {/* add license button */}
         <div className="py-6">
-          <Button onClick={() => router.push("dashboard/licenses/new")}>
+          <Button onClick={() => router.push("dashboard/new-license")}>
             Add New License
           </Button>
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Page;
+export default Page

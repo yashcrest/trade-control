@@ -37,7 +37,7 @@ export const mockData = [
   },
   {
     id: 5,
-    authorization: "General Permit E-345",
+    authorization: "DSP-5",
     type: "General Trade",
     number: "GEN-2024-005",
     startDate: "2024-02-15",
@@ -46,7 +46,7 @@ export const mockData = [
   },
   {
     id: 6,
-    authorization: "Restricted Items F-678",
+    authorization: "DSP-61",
     type: "Restricted Export",
     number: "RES-2024-006",
     startDate: "2024-01-10",
@@ -55,7 +55,7 @@ export const mockData = [
   },
   {
     id: 7,
-    authorization: "Temporary Permit G-901",
+    authorization: "DSP-85",
     type: "Temporary Export",
     number: "TEM-2024-007",
     startDate: "2024-02-20",
@@ -64,7 +64,7 @@ export const mockData = [
   },
   {
     id: 8,
-    authorization: "Commercial License H-234",
+    authorization: "SUP",
     type: "Commercial Export",
     number: "COM-2024-008",
     startDate: "2024-03-05",
@@ -73,7 +73,7 @@ export const mockData = [
   },
   {
     id: 9,
-    authorization: "Dual-Use Items I-567",
+    authorization: "AGA",
     type: "Dual-Use Export",
     number: "DUA-2024-009",
     startDate: "2024-01-25",
@@ -82,7 +82,7 @@ export const mockData = [
   },
   {
     id: 10,
-    authorization: "Emergency Permit J-890",
+    authorization: "GPL",
     type: "Emergency Export",
     number: "EME-2024-010",
     startDate: "2024-02-10",

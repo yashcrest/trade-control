@@ -12,18 +12,21 @@ import { TrendingUpIcon, Send, Users, Settings2, Clock } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { toast } from "sonner"
 import { Badge } from "@/components/ui/badge"
+import { useRouter } from "next/navigation"
 
 const CardSection = () => {
-  const handleClick = () => {
-    toast.success("Test Click")
-  }
+  const router = useRouter()
 
   return (
     <div className="space-y-5">
       <div className="flex">
         <h2 className="flex-1 text-center">Authorization</h2>
         <div>
-          <Button onClick={handleClick}>+ New Authorisation</Button>
+          <Button
+            onClick={() => router.push("authorization/new-authorization")}
+          >
+            + New Authorisation
+          </Button>
         </div>
       </div>
       <div className="grid grid-cols-4 gap-4 px-4 cursor-pointer">
