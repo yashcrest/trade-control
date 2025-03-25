@@ -1,7 +1,8 @@
 "use client"
 import { useMemo, useState } from "react"
 import { mockData } from "@/data/authorizationData"
-import { ArrowUpDown } from "lucide-react"
+import { ArrowUpDown, ChevronDown, ChevronUp } from "lucide-react"
+import { Button } from "@/components/ui/button"
 
 const LicenseTable = () => {
   const [searchItem, setSearchItem] = useState("")
@@ -124,6 +125,23 @@ const LicenseTable = () => {
             </tbody>
           </table>
         </div>
+        {filteredAndSortedData.length < 10 && (
+          <div className="p-4 border-t">
+            <Button variant="secondary" onClick={() => setShowAll(!showAll)}>
+              {showAll ? (
+                <>
+                  Show Less
+                  <ChevronUp />
+                </>
+              ) : (
+                <>
+                  Show All
+                  <ChevronDown />
+                </>
+              )}
+            </Button>
+          </div>
+        )}
       </div>
     </div>
   )
