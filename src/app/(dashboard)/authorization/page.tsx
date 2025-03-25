@@ -1,12 +1,11 @@
-import { CardSection } from "@/modules/authorization/CardSection"
-import { ChartArea } from "@/modules/authorization/chart-area"
+import { CardSection, LicenseTable } from "@/modules/authorization/index"
 
 const Authorization = () => {
   return (
-    <>
+    <div className="space-y-6">
       <CardSection />
-      <ChartArea />
-    </>
+      <LicenseTable />
+    </div>
   )
 }
 

@@ -8,13 +8,7 @@ import {
 } from "@/components/ui/card"
 
 import React from "react"
-import {
-  TrendingUpIcon,
-  CircleDotDashed,
-  Send,
-  ShieldAlert,
-  Users,
-} from "lucide-react"
+import { TrendingUpIcon, Send, Users, Settings2, Clock } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { toast } from "sonner"
 import { Badge } from "@/components/ui/badge"
@@ -32,7 +26,7 @@ const CardSection = () => {
           <Button onClick={handleClick}>+ New Authorisation</Button>
         </div>
       </div>
-      <div className="grid grid-cols-4 gap-4 px-4">
+      <div className="grid grid-cols-4 gap-4 px-4 cursor-pointer">
         <Card>
           <CardHeader>
             <div className="flex justify-between">
@@ -72,7 +66,7 @@ const CardSection = () => {
               </div>
               <div>
                 <Badge variant="outline">
-                  <ShieldAlert className="size-4" />
+                  <Clock className="size-4" />
                 </Badge>
               </div>
             </div>
@@ -120,7 +114,7 @@ const CardSection = () => {
               </div>
               <div>
                 <Badge variant="outline">
-                  <CircleDotDashed className=" size-4" />
+                  <Settings2 className=" size-4" />
                 </Badge>
               </div>
             </div>
