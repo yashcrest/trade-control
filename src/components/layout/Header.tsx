@@ -1,11 +1,13 @@
-"use client";
-import { Bell, LogOut, Shield, User, UserCog } from "lucide-react";
-import { signOut } from "next-auth/react";
-import { useState } from "react";
-import Link from "next/link";
+"use client"
+import { Bell, LogOut, Shield, User, UserCog } from "lucide-react"
+import { signOut } from "next-auth/react"
+import { useState } from "react"
+import Link from "next/link"
+import { useRouter } from "next/navigation"
 
 const Header = () => {
-  const [isDropdownOpen, setDropdownOpen] = useState(false);
+  const router = useRouter()
+  const [isDropdownOpen, setDropdownOpen] = useState(false)
   return (
     <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
       <div className="px-8">
@@ -37,7 +39,7 @@ const Header = () => {
               {isDropdownOpen && (
                 <div className="absolute right-0 mt-2 w-48 bg-white border rounded-lg shadow-lg">
                   <button
-                    onClick={() => console.log("profile settings clicked")}
+                    onClick={() => router.push("profile")}
                     className="flex items-center w-full px-4 py-2 text-gray-700 hover:bg-gray-100"
                   >
                     <User className="w-5 h-5 mr-2" />
@@ -59,7 +61,7 @@ const Header = () => {
         </div>
       </div>
     </header>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header
