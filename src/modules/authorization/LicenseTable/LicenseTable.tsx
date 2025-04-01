@@ -79,7 +79,7 @@ const LicenseTable = () => {
                 ].map((key) => (
                   <th
                     key={key}
-                    className=" uppercase tracking-wider text-sm font-medium cursor-pointer px-6 py-3 hover:bg-gray-100"
+                    className=" uppercase tracking-wider text-xs font-medium text-gray-500 cursor-pointer px-6 py-3 hover:bg-gray-100"
                     onClick={() => handleSort(key)}
                   >
                     <div className="flex items-center gap-2">

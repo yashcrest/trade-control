@@ -1,3 +1,4 @@
+"use client"
 import React, { useState, useMemo } from "react"
 import {
   Search,
@@ -105,7 +106,7 @@ const mockData = [
   },
 ]
 
-function App() {
+export default function Test() {
   const [searchTerm, setSearchTerm] = useState("")
   const [sortConfig, setSortConfig] = useState({ key: "", direction: "" })
   const [showAll, setShowAll] = useState(false)
@@ -158,71 +159,16 @@ function App() {
   return (
     <div className="min-h-screen bg-gray-50 p-8">
       <div className="max-w-7xl mx-auto">
-        <div className="flex justify-between items-center mb-8">
+        {/* <div className="flex justify-between items-center mb-8">
           <h1 className="text-3xl font-bold text-gray-900">Authorization</h1>
           <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2">
             + New Authorization
           </button>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          {/* Stats Cards */}
-          <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-            <div className="flex justify-between items-start mb-4">
-              <h3 className="text-gray-500 text-sm font-medium">
-                Active Authorizations
-              </h3>
-              <MoveUpRight className="w-5 h-5 text-gray-400" />
-            </div>
-            <p className="text-3xl font-bold">350</p>
-            <p className="text-sm text-gray-500 mt-1">
-              Current Active Authorization
-            </p>
-          </div>
-
-          <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-            <div className="flex justify-between items-start mb-4">
-              <h3 className="text-gray-500 text-sm font-medium">
-                Expiring Authorizations
-              </h3>
-              <Clock className="w-5 h-5 text-gray-400" />
-            </div>
-            <p className="text-3xl font-bold">67</p>
-            <p className="text-sm text-gray-500 mt-1">
-              Expiring in next 60 days
-            </p>
-          </div>
-
-          <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-            <div className="flex justify-between items-start mb-4">
-              <h3 className="text-gray-500 text-sm font-medium">
-                Submitted Authorizations
-              </h3>
-              <SendHorizontal className="w-5 h-5 text-gray-400" />
-            </div>
-            <p className="text-3xl font-bold">30</p>
-            <p className="text-sm text-gray-500 mt-1">
-              Recently submitted for approval
-            </p>
-          </div>
-
-          <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-            <div className="flex justify-between items-start mb-4">
-              <h3 className="text-gray-500 text-sm font-medium">
-                Pending Authorization
-              </h3>
-              <Settings2 className="w-5 h-5 text-gray-400" />
-            </div>
-            <p className="text-3xl font-bold">10</p>
-            <p className="text-sm text-gray-500 mt-1">
-              Awaiting review or action
-            </p>
-          </div>
-        </div>
+        </div> */}
 
         {/* Table Section */}
         <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
-          <div className="p-6 border-b border-gray-100">
+          {/* <div className="p-6 border-b border-gray-100">
             <div className="flex items-center justify-between">
               <h2 className="text-xl font-semibold text-gray-900">
                 Authorization List
@@ -238,7 +184,7 @@ function App() {
                 />
               </div>
             </div>
-          </div>
+          </div> */}
 
           <div className="overflow-x-auto">
             <table className="w-full">
@@ -327,5 +273,3 @@ function App() {
     </div>
   )
 }
-
-export default App
