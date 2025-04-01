@@ -197,6 +197,30 @@ const authorizationTypes = {
       ],
     },
   },
+  uk: {
+    "Standard Individual Export License (SIEL)": {
+      fields: [
+        {
+          name: "militaryDualUseClassification",
+          label: "Military/Dual-Use Classification",
+          type: "text",
+          required: true,
+        },
+        {
+          name: "endUserUndertaking",
+          label: "End-User Undertaking",
+          type: "file",
+          requried: true,
+        },
+        {
+          name: "contractReference",
+          label: "Contract Reference",
+          type: "number",
+          required: true,
+        },
+      ],
+    },
+  },
 }
 
 // Available countries
@@ -296,7 +320,7 @@ export default function Test1() {
           </h1>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form className="space-y-6">
           {/* Basic Information Section */}
           <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
             <h3 className="text-lg font-medium text-gray-900 mb-4">
