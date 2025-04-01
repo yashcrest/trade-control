@@ -23,6 +23,7 @@ const CardSection = () => {
 
   return (
     <div className="space-y-5">
+      {/* heading and button */}
       <div className="flex">
         <h2 className="flex-1 text-center">Authorization</h2>
         <div>
@@ -34,6 +35,7 @@ const CardSection = () => {
         </div>
       </div>
       <div className="grid grid-cols-4 gap-4 px-4 cursor-pointer">
+        {/* Cards */}
         <Card onClick={handleClick}>
           <CardHeader>
             <div className="flex justify-between">

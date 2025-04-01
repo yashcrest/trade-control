@@ -17,11 +17,11 @@ export const AuthorizationForm = () => {
   }
 
   return (
-    <div className="space-y-2">
+    <div className="max-w-4xl mx-auto space-y-2">
       <h4>Create new license form</h4>
       <form onSubmit={handleSubmit}>
         <Card className="p-6 space-y-4">
-          <CardTitle>Basic License Information</CardTitle>
+          <h5>Basic License Information</h5>
           <div className="grid grid-cols-2 gap-6">
             <div className="flex flex-col space-y-2">
               <label>License Type *</label>
