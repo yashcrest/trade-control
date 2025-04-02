@@ -1,203 +1,735 @@
 "use client"
-import React from "react"
-import { Card, CardHeader, CardTitle } from "../ui/card"
-import { Paperclip, Upload } from "lucide-react"
-import { Button } from "../ui/button"
-import { toast } from "sonner"
+import React, { useState } from "react"
+import { useRouter } from "next/navigation"
+import { ArrowLeft } from "lucide-react"
+
+// Authorization types with their specific fields
+const authorizationTypes = {
+  australia: {
+    "Single-Use Export Permit (SUP)": {
+      fields: [
+        {
+          name: "endUserCertificate",
+          label: "End-User Certificate",
+          type: "file",
+          required: true,
+        },
+        {
+          name: "hsCustomsCode",
+          label: "HS/Customs Code",
+          type: "text",
+          required: true,
+        },
+      ],
+    },
+    "Multi-Party (Project) Permit": {
+      fields: [
+        {
+          name: "consortiumParticipants",
+          label: "Consortium Participants",
+          type: "textarea",
+          required: true,
+        },
+      ],
+    },
+    "Techonology Sharing Agreements": {
+      fields: [
+        {
+          name: "projectDuration",
+          label: "Project Duration",
+          type: "date",
+          required: true,
+        },
+      ],
+    },
+    "Contract-Based Export Permit": {
+      fields: [
+        {
+          name: "linkedContractId",
+          label: "Linked Contract ID",
+          type: "number",
+          required: true,
+        },
+        {
+          name: "contractEndDate",
+          label: "Contract End Date",
+          type: "Date",
+          required: true,
+        },
+      ],
+    },
+    "Temporary Export Permit": {
+      fields: [
+        {
+          name: "returnConditions",
+          label: "Return Conditions",
+          type: "text",
+          required: true,
+        },
+        {
+          name: "temporaryStorageDetails",
+          label: "Temporary Storage Details",
+          type: "text",
+          required: true,
+        },
+        {
+          name: "eventDemoDetails",
+          label: "Event/Demo Details",
+          type: "text",
+          required: true,
+        },
+      ],
+    },
+    "Brokering Permit": {
+      fields: [
+        {
+          name: "thirdPartyEntitiesInvolved",
+          label: "Third-Party Entities Involved",
+          type: "textarea",
+          required: true,
+        },
+        {
+          name: "noDirectOwnershipCertification",
+          label: "No Direct Ownership Certification",
+          type: "file",
+          required: true,
+        },
+      ],
+    },
+    "Intangible Transfer Permit": {
+      fields: [
+        {
+          name: "digitalTransferConfirmation",
+          label: "Digital Transfer Confirmation",
+          type: "boolean",
+          required: true,
+        },
+        {
+          name: "encryptionStandardsUsed",
+          label: "Encryption Standard Used",
+          type: "select",
+          required: true,
+        },
+      ],
+    },
+    "DTCT Exemption": {
+      fields: [
+        {
+          name: "preApprovedRecipients",
+          label: "Pre-Approved U.S. Recipients List",
+          type: "textarea",
+          required: true,
+        },
+        {
+          name: "treatyCompliance",
+          label: "Treaty Compliance Statement",
+          type: "file",
+          required: true,
+        },
+      ],
+    },
+  },
+  usa: {
+    "DSP-5": {
+      fields: [
+        {
+          name: "manufacturerName",
+          label: "Manufacturer Name",
+          type: "text",
+          required: true,
+        },
+        {
+          name: "technicalDataClassification",
+          label: "Technical Data Classification",
+          type: "text",
+          required: true,
+        },
+        {
+          name: "endUseStatement",
+          label: "End-Use Statement",
+          type: "file",
+          required: true,
+        },
+      ],
+    },
+    "DSP-73": {
+      fields: [
+        {
+          name: "purposeOfTemporaryExport",
+          label: "Purpose of Temporary Export",
+          type: "textarea",
+          required: true,
+        },
+        {
+          name: "expectedReturnDate",
+          label: "Expected Return Date",
+          type: "date",
+          required: true,
+        },
+        {
+          name: "usageRestrictions",
+          label: "Usage Restrictions",
+          type: "textarea",
+          required: true,
+        },
+      ],
+    },
+    "BIS Licence": {
+      fields: [
+        {
+          name: "eccnClassification",
+          label: "ECCN Classification",
+          type: "text",
+          required: true,
+        },
+        {
+          name: "reexportRestrictions",
+          label: "Reexport Restrictions",
+          type: "textarea",
+          required: true,
+        },
+        {
+          name: "commerceCountryChart",
+          label: "Commerce Country Chart Review",
+          type: "textarea",
+          required: true,
+        },
+      ],
+    },
+  },
+  uk: {
+    "Standard Individual Export License (SIEL)": {
+      fields: [
+        {
+          name: "militaryDualUseClassification",
+          label: "Military/Dual-Use Classification",
+          type: "text",
+          required: true,
+        },
+        {
+          name: "endUserUndertaking",
+          label: "End-User Undertaking",
+          type: "file",
+          requried: true,
+        },
+        {
+          name: "contractReference",
+          label: "Contract Reference",
+          type: "number",
+          required: true,
+        },
+      ],
+    },
+    "Open Individual Export License (OIEL)": {
+      fields: [
+        {
+          name: "multipleShipmentApproval",
+          label: "Multiple Shipment Approval",
+          type: "text",
+          required: true,
+        },
+        {
+          name: "namedRecipients",
+          label: "Named Recipients",
+          type: "text",
+          required: true,
+        },
+        {
+          name: "preApprovedEndUsers",
+          label: "Pre-Approved End-Users",
+          type: "text",
+          required: true,
+        },
+      ],
+    },
+    "Open General Export License (OGEL)": {
+      fields: [
+        {
+          name: "allowedDestinationList",
+          label: "Allowed Desntination List",
+          type: "text",
+          required: true,
+        },
+        {
+          name: "licenseConditionsComplianceConfirmation",
+          label: "License Conditions Compliance Confirmation",
+          type: "text",
+          required: true,
+        },
+      ],
+    },
+    "Dual-Use SIEL": {
+      fields: [
+        {
+          name: "endUserVerfication",
+          label: "End-User Verification",
+          type: "text",
+          required: true,
+        },
+        {
+          name: "advancedTechonologyClassification",
+          label: "Advanced Technology Classification",
+          type: "text",
+          requied: true,
+        },
+      ],
+    },
+    "Dual-Use OGEL": {
+      fields: [
+        {
+          name: "eligibleCountriesList",
+          label: "Eligible Countries List",
+          type: "text",
+          requried: true,
+        },
+        {
+          name: "specialControlsCryptographic",
+          label: "Special Controls on Cryptographic Exports",
+          type: "text",
+          required: true,
+        },
+      ],
+    },
+  },
+  france: {
+    "France - Global Project License (GPL)": {
+      fields: [
+        {
+          name: "multiPartyAgreement",
+          label: "Multi-Party Agreement",
+          type: "text",
+          required: true,
+        },
+        {
+          name: "endUserlist",
+          label: "End-User List",
+          type: "text",
+          required: true,
+        },
+        {
+          name: "transferLimitsPerCountry",
+          label: "Transfer Limits per Country",
+          type: "text",
+          required: true,
+        },
+      ],
+    },
+  },
+  germany: {
+    "Germany - AGA": {
+      fields: [
+        {
+          name: "exportVolumeLimits",
+          label: "Export Volume Limist",
+          type: "text",
+          requried: true,
+        },
+        {
+          name: "perApprovedRecipients",
+          label: "Per-Approved Recipients",
+          type: "text",
+          required: true,
+        },
+        {
+          name: "germanForeignPolicyCompliance",
+          label: "Germany Foreign Policy Compliance",
+          type: "text",
+          required: true,
+        },
+      ],
+    },
+  },
+}
+
+// Available countries
+const countries = [
+  { value: "australia", label: "Australia" },
+  { value: "usa", label: "U.S" },
+  { value: "uk", label: "UK" },
+  { value: "france", label: "France" },
+  { value: "germany", label: "Germany" },
+  { value: "sweden/norway", label: "Sweden/Norway" },
+  { value: "spain/italy", label: "Spain/Italy" },
+]
+
+// Issuing authorities
+const issuingAuthorities = [
+  { value: "aus_defence", label: "Australian Department of Defence" },
+  { value: "aus_customs", label: "Australian Border Force" },
+  { value: "us_state", label: "U.S. Department of State" },
+  { value: "us_commerce", label: "U.S. Department of Commerce" },
+]
 
 export const AuthorizationForm = () => {
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    toast.message("Form submitted!")
+  const router = useRouter()
+  const [selectedCountry, setSelectedCountry] = useState("")
+  const [formData, setFormData] = useState({
+    authorizationOrigin: "",
+    authorizationType: "",
+    authorizationName: "",
+    authorizationNumber: "",
+    issuingAuthority: "",
+    startDate: "",
+    expirationDate: "",
+    status: "Draft",
+    approvedParties: "",
+    approvedQuantities: "",
+    conditions: "",
+    additionalConditions: "",
+    reexportRequirements: "",
+    dynamicFields: {},
+  })
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target
+    if (name === "authorizationOrigin") {
+      setSelectedCountry(value)
+      setFormData((prev) => ({
+        ...prev,
+        authorizationOrigin: value,
+        authorizationType: "",
+        dynamicFields: {},
+      }))
+    } else if (name === "authorizationType") {
+      setFormData((prev) => ({
+        ...prev,
+        authorizationType: value,
+        dynamicFields: {},
+      }))
+    } else {
+      setFormData((prev) => ({
+        ...prev,
+        [name]: value,
+      }))
+    }
   }
 
-  // for dragging file into DOM
-  const handleDragover = (e) => {
-    //
+  const handleFileChange = (e) => {
+    const { name, files } = e.target
+    if (files?.length) {
+      setFormData((prev) => ({
+        ...prev,
+        dynamicFields: {
+          ...prev.dynamicFields,
+          [name]: files[0],
+        },
+      }))
+    }
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    console.log("Form submitted:", formData)
+    router.push("/authorization")
   }
 
   return (
-    <div className="max-w-4xl mx-auto space-y-2">
-      <h4>Create new license form</h4>
-      <form onSubmit={handleSubmit}>
-        <Card className="p-6 space-y-4">
-          <h5>Basic License Information</h5>
-          <div className="grid grid-cols-2 gap-6">
-            <div className="flex flex-col space-y-2">
-              <label>License Type *</label>
-              <select
-                className="border rounded-lg p-1.5 outline-none"
-                defaultValue="DSP-5 (Permanent Export)"
-              >
-                <option>DSP-5 (Permanent Export)</option>
-                <option>DSP-73 (Temporary Export)</option>
-                <option>EAR (Re-export)</option>
-              </select>
-            </div>
-            <div className="flex flex-col space-y-2">
-              <label>License Number *</label>
-              <input
-                type="text"
-                className="border rounded-lg p-1 outline-none"
-                placeholder="e.g. DSP-5 2024"
-              />
-            </div>
-            <div className="flex flex-col space-y-2">
-              <label>Issue Date *</label>
-              <input
-                className="outline-none p-1 border rounded-lg"
-                type="date"
-              />
-            </div>
-            <div className="flex flex-col space-y-2">
-              <label>Expiry Date *</label>
-              <input
-                type="date"
-                className="outline-none p-1 border rounded-lg"
-              />
-            </div>
-          </div>
-          <h5>Associated Parties</h5>
-          <div className="grid grid-cols-2 gap-6">
-            <div className="flex flex-col space-y-2">
-              <label>Authorization Name *</label>
-              <input
-                type="text"
-                required
-                className="rounded-lg border outline-none p-1"
-                placeholder="Exmple Pty Ltd."
-              />
-            </div>
-            <div className="flex flex-col space-y-2">
-              <label>Consignee *</label>
-              <input
-                type="text"
-                required
-                className="rounded-lg border outline-none p-1"
-                placeholder="Joe Doe"
-              />
-            </div>
-            <div className="flex flex-col space-y-2">
-              <label>End User *</label>
-              <input
-                type="text"
-                required
-                className="rounded-lg border outline-none p-1"
-                placeholder="Jane Doe"
-              />
-            </div>
-            <div className="flex flex-col space-y-2">
-              <label>Intermediaries</label>
-              <input
-                type="text"
-                required
-                className="rounded-lg border outline-none p-1"
-                placeholder="Separate multiple entries with commas"
-              />
-            </div>
-          </div>
-          <div className="space-y-2">
-            <h5>Product Information</h5>
-            <div className="flex flex-col">
-              <label>Product or Technology Descrption *</label>
-              <textarea
-                rows={5}
-                cols={10}
-                className="border outline-none rounded-md p-1"
-              />
-            </div>
-          </div>
-          <div className="grid grid-cols-2 gap-4">
-            <div className="flex flex-col space-y-2">
-              <label>Value (USD) *</label>
-              <input
-                type="number"
-                max={40}
-                className="rounded-lg border outline-none p-1"
-              />
-            </div>
-            <div className="flex flex-col space-y-2">
-              <label>Quality *</label>
-              <input
-                type="number"
-                max={40}
-                className="rounded-lg border outline-none p-1"
-              />
-            </div>
-          </div>
-          <div className="space-y-3">
-            <h5>License Conditions</h5>
-            <div className="flex flex-col">
-              <label> Special Conditions and Restrictions</label>
-              <textarea
-                rows={5}
-                cols={10}
-                className="border outline-none rounded-md p-1"
-                placeholder="Enter any special conditions, restrictions or notes about this license"
-              />
+    <div className="min-h-screen bg-gray-50 p-8">
+      <div className="max-w-4xl mx-auto">
+        <div className="flex items-center gap-4 mb-8">
+          <button
+            onClick={() => router.push("/authorization")}
+            className="text-gray-600 hover:text-gray-900 transition-colors"
+          >
+            <ArrowLeft className="w-6 h-6" />
+          </button>
+          <h1 className="text-3xl font-bold text-gray-900">
+            New Authorization
+          </h1>
+        </div>
+
+        <form className="space-y-6">
+          {/* Basic Information Section */}
+          <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+            <h3 className="text-lg font-medium text-gray-900 mb-4">
+              Basic Information
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {/* Country Selection */}
+              <div>
+                <label
+                  htmlFor="authorizationOrigin"
+                  className="block text-sm font-medium text-gray-700 mb-2"
+                >
+                  Country
+                </label>
+                <select
+                  id="authorizationOrigin"
+                  name="authorizationOrigin"
+                  value={formData.authorizationOrigin}
+                  onChange={handleInputChange}
+                  className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  required
+                >
+                  <option value="">Select a country</option>
+                  {countries.map((country) => (
+                    <option key={country.value} value={country.value}>
+                      {country.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              {/* Authorization Type */}
+              {selectedCountry && (
+                <div>
+                  <label
+                    htmlFor="authorizationType"
+                    className="block text-sm font-medium text-gray-700 mb-2"
+                  >
+                    Authorization Type
+                  </label>
+                  <select
+                    id="authorizationType"
+                    name="authorizationType"
+                    value={formData.authorizationType}
+                    onChange={handleInputChange}
+                    className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    required
+                  >
+                    <option value="">Select authorization type</option>
+                    {Object.keys(authorizationTypes[selectedCountry]).map(
+                      (type) => (
+                        <option key={type} value={type}>
+                          {type}
+                        </option>
+                      )
+                    )}
+                  </select>
+                </div>
+              )}
+
+              {/* Authorization Name */}
+              <div>
+                <label
+                  htmlFor="authorizationName"
+                  className="block text-sm font-medium text-gray-700 mb-2"
+                >
+                  Authorization Name
+                </label>
+                <input
+                  type="text"
+                  id="authorizationName"
+                  name="authorizationName"
+                  value={formData.authorizationName}
+                  onChange={handleInputChange}
+                  className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  required
+                />
+              </div>
+
+              {/* Authorization Number */}
+              <div>
+                <label
+                  htmlFor="authorizationNumber"
+                  className="block text-sm font-medium text-gray-700 mb-2"
+                >
+                  Authorization Number
+                </label>
+                <input
+                  type="text"
+                  id="authorizationNumber"
+                  name="authorizationNumber"
+                  value={formData.authorizationNumber}
+                  onChange={handleInputChange}
+                  className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  required
+                />
+              </div>
+
+              {/* Issuing Authority */}
+              <div>
+                <label
+                  htmlFor="issuingAuthority"
+                  className="block text-sm font-medium text-gray-700 mb-2"
+                >
+                  Issuing Authority
+                </label>
+                <select
+                  id="issuingAuthority"
+                  name="issuingAuthority"
+                  value={formData.issuingAuthority}
+                  onChange={handleInputChange}
+                  className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  required
+                >
+                  <option value="">Select issuing authority</option>
+                  {issuingAuthorities.map((authority) => (
+                    <option key={authority.value} value={authority.value}>
+                      {authority.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              {/* Dates */}
+              <div>
+                <label
+                  htmlFor="startDate"
+                  className="block text-sm font-medium text-gray-700 mb-2"
+                >
+                  Start Date
+                </label>
+                <input
+                  type="date"
+                  id="startDate"
+                  name="startDate"
+                  value={formData.startDate}
+                  onChange={handleInputChange}
+                  className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  required
+                />
+              </div>
+
+              <div>
+                <label
+                  htmlFor="expirationDate"
+                  className="block text-sm font-medium text-gray-700 mb-2"
+                >
+                  Expiration Date
+                </label>
+                <input
+                  type="date"
+                  id="expirationDate"
+                  name="expirationDate"
+                  value={formData.expirationDate}
+                  onChange={handleInputChange}
+                  className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  required
+                />
+              </div>
             </div>
           </div>
 
-          <h4>Document Attachments</h4>
-          <div className="space-y-2 bg-slate-100 p-4">
-            <h6>Add New Document</h6>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="flex flex-col">
-                <label>Document name</label>
-                <input
-                  type="text"
-                  className="border rounded-lg p-1 outline-none"
+          {/* Additional Information Section */}
+          <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+            <h3 className="text-lg font-medium text-gray-900 mb-4">
+              Additional Information
+            </h3>
+            <div className="space-y-4">
+              <div>
+                <label
+                  htmlFor="approvedParties"
+                  className="block text-sm font-medium text-gray-700 mb-2"
+                >
+                  Approved Parties
+                </label>
+                <textarea
+                  id="approvedParties"
+                  name="approvedParties"
+                  value={formData.approvedParties}
+                  onChange={handleInputChange}
+                  rows={3}
+                  className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 />
               </div>
-              <div className="flex flex-col">
-                <label>Document Name</label>
-                <select className="border rounded-lg p-1.5 outline-none">
-                  <option>Contract</option>
-                  <option>Agreement</option>
-                  <option>Certificate</option>
-                  <option>Other</option>
-                </select>
+
+              <div>
+                <label
+                  htmlFor="approvedQuantities"
+                  className="block text-sm font-medium text-gray-700 mb-2"
+                >
+                  Approved Quantities
+                </label>
+                <input
+                  type="number"
+                  id="approvedQuantities"
+                  name="approvedQuantities"
+                  value={formData.approvedQuantities}
+                  onChange={handleInputChange}
+                  className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                />
+              </div>
+
+              <div>
+                <label
+                  htmlFor="conditions"
+                  className="block text-sm font-medium text-gray-700 mb-2"
+                >
+                  Conditions
+                </label>
+                <textarea
+                  id="conditions"
+                  name="conditions"
+                  value={formData.conditions}
+                  onChange={handleInputChange}
+                  rows={3}
+                  className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                />
               </div>
             </div>
-            <div className="flex flex-col">
-              <label>Description</label>
-              <textarea
-                rows={4}
-                cols={10}
-                className="border outline-none rounded-md p-1"
-              />
-            </div>
-            <div onDragOverCapture={handleDragover}>
-              <div className="px-6 pt-5 pb-6 mt-1 flex justify-center border-2 border-gray-300 rounded-md border-dashed">
-                <div className="space-y-1 text-center">
-                  <div className="flex flex-col items-center">
-                    <label htmlFor="file-upload">
-                      <Upload className=" h-12 w-12 hover:text-blue-600" />
-                      <input type="file" id="file-upload" className="sr-only" />
+          </div>
+
+          {/* Dynamic Fields Section */}
+          {selectedCountry && formData.authorizationType && (
+            <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+              <h3 className="text-lg font-medium text-gray-900 mb-4">
+                {formData.authorizationType} Specific Information
+              </h3>
+              <div className="space-y-4">
+                {authorizationTypes[selectedCountry][
+                  formData.authorizationType
+                ].fields.map((field) => (
+                  <div key={field.name}>
+                    <label
+                      htmlFor={field.name}
+                      className="block text-sm font-medium text-gray-700 mb-2"
+                    >
+                      {field.label}
                     </label>
-                    <p className="text-gray-600">
-                      Upload a file or drag and drop
-                    </p>
-                    <p className="text-xs text-gray-500">PDF, DOC up to 10MB</p>
+                    {field.type === "file" ? (
+                      <input
+                        type="file"
+                        id={field.name}
+                        name={field.name}
+                        onChange={handleFileChange}
+                        className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        required={field.required}
+                      />
+                    ) : field.type === "textarea" ? (
+                      <textarea
+                        id={field.name}
+                        name={field.name}
+                        value={formData.dynamicFields[field.name] || ""}
+                        onChange={handleInputChange}
+                        rows={3}
+                        className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        required={field.required}
+                      />
+                    ) : (
+                      <input
+                        type={field.type}
+                        id={field.name}
+                        name={field.name}
+                        value={formData.dynamicFields[field.name] || ""}
+                        onChange={handleInputChange}
+                        className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        required={field.required}
+                      />
+                    )}
                   </div>
-                </div>
+                ))}
               </div>
             </div>
-            <div>
-              <Button className="w-full">
-                <Paperclip />
-                Attach docs
-              </Button>
-            </div>
-          </div>
-          <div className="flex justify-end space-x-4">
-            <Button variant="ghost" className="border border-gray-300">
+          )}
+
+          <div className="flex justify-end gap-3">
+            <button
+              type="button"
+              onClick={() => router.push("/authorization")}
+              className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors"
+            >
               Cancel
-            </Button>
-            <Button>Create License</Button>
+            </button>
+            <button
+              type="submit"
+              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            >
+              Create Authorization
+            </button>
           </div>
-        </Card>
-      </form>
+        </form>
+      </div>
     </div>
   )
 }

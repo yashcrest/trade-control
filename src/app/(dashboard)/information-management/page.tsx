@@ -1,9 +1,9 @@
 const InformationManagement = () => {
   return (
     <div className="text-center h-full">
-      <h1>Coming Soon!</h1>
+      <h2>Information Management page Coming Soon!</h2>
     </div>
-  );
-};
+  )
+}
 
-export default InformationManagement;
+export default InformationManagement

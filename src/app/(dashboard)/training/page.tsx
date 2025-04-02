@@ -1,9 +1,9 @@
 const Training = () => {
   return (
     <div className="text-center h-full">
-      <h1>Coming Soon!</h1>
+      <h2>Training page Coming Soon!</h2>
     </div>
-  );
-};
+  )
+}
 
-export default Training;
+export default Training

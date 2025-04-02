@@ -1,9 +1,9 @@
 const Workforce = () => {
   return (
     <div className="text-center h-full">
-      <h1>Coming Soon!</h1>
+      <h2>Workforce page Coming Soon!</h2>
     </div>
-  );
-};
+  )
+}
 
-export default Workforce;
+export default Workforce
