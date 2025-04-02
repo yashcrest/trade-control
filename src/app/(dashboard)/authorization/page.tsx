@@ -5,7 +5,7 @@ const Authorization = () => {
     <div className="space-y-6">
       <CardSection />
       <LicenseTable />
-      <Test />
+      {/* <Test /> */}
     </div>
   )
 }
