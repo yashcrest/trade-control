@@ -220,6 +220,76 @@ const authorizationTypes = {
         },
       ],
     },
+    "Open Individual Export License (OIEL)": {
+      fields: [
+        {
+          name: "multipleShipmentApproval",
+          label: "Multiple Shipment Approval",
+          type: "text",
+          required: true,
+        },
+        {
+          name: "namedRecipients",
+          label: "Named Recipients",
+          type: "text",
+          required: true,
+        },
+        {
+          name: "preApprovedEndUsers",
+          label: "Pre-Approved End-Users",
+          type: "text",
+          required: true,
+        },
+      ],
+    },
+    "Open General Export License (OGEL)": {
+      fields: [
+        {
+          name: "allowedDestinationList",
+          label: "Allowed Desntination List",
+          type: "text",
+          required: true,
+        },
+        {
+          name: "licenseConditionsComplianceConfirmation",
+          label: "License Conditions Compliance Confirmation",
+          type: "text",
+          required: true,
+        },
+      ],
+    },
+    "Dual-Use SIEL": {
+      fields: [
+        {
+          name: "endUserVerfication",
+          label: "End-User Verification",
+          type: "text",
+          required: true,
+        },
+        {
+          name: "advancedTechonologyClassification",
+          label: "Advanced Technology Classification",
+          type: "text",
+          requied: true,
+        },
+      ],
+    },
+    "Dual-Use OGEL": {
+      fields: [
+        {
+          name: "eligibleCountriesList",
+          label: "Eligible Countries List",
+          type: "text",
+          requried: true,
+        },
+        {
+          name: "specialControlsCryptographic",
+          label: "Special Controls on Cryptographic Exports",
+          type: "text",
+          required: true,
+        },
+      ],
+    },
   },
 }
 
