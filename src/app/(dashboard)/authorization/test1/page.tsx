@@ -291,6 +291,54 @@ const authorizationTypes = {
       ],
     },
   },
+  france: {
+    "France - Global Project License (GPL)": {
+      fields: [
+        {
+          name: "multiPartyAgreement",
+          label: "Multi-Party Agreement",
+          type: "text",
+          required: true,
+        },
+        {
+          name: "endUserlist",
+          label: "End-User List",
+          type: "text",
+          required: true,
+        },
+        {
+          name: "transferLimitsPerCountry",
+          label: "Transfer Limits per Country",
+          type: "text",
+          required: true,
+        },
+      ],
+    },
+  },
+  germany: {
+    "Germany - AGA": {
+      fields: [
+        {
+          name: "exportVolumeLimits",
+          label: "Export Volume Limist",
+          type: "text",
+          requried: true,
+        },
+        {
+          name: "perApprovedRecipients",
+          label: "Per-Approved Recipients",
+          type: "text",
+          required: true,
+        },
+        {
+          name: "germanForeignPolicyCompliance",
+          label: "Germany Foreign Policy Compliance",
+          type: "text",
+          required: true,
+        },
+      ],
+    },
+  },
 }
 
 // Available countries
