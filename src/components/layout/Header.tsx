@@ -39,7 +39,7 @@ const Header = () => {
               {isDropdownOpen && (
                 <div className="absolute right-0 mt-2 w-48 bg-white border rounded-lg shadow-lg">
                   <button
-                    onClick={() => router.push("profile")}
+                    onClick={() => router.push("/profile")}
                     className="flex items-center w-full px-4 py-2 text-gray-700 hover:bg-gray-100"
                   >
                     <User className="w-5 h-5 mr-2" />
