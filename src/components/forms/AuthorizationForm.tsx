@@ -3,6 +3,8 @@ import React, { useState } from "react"
 import { useRouter } from "next/navigation"
 import { ArrowLeft } from "lucide-react"
 
+type FieldType = "text" | "textarea" | "file" | "number" | "date" | "select"
+
 // Authorization types with their specific fields
 const authorizationTypes = {
   australia: {
