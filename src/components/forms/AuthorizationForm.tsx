@@ -3,10 +3,34 @@ import React, { useState } from "react"
 import { useRouter } from "next/navigation"
 import { ArrowLeft } from "lucide-react"
 
-type FieldType = "text" | "textarea" | "file" | "number" | "date" | "select"
+type FieldType =
+  | "text"
+  | "textarea"
+  | "file"
+  | "number"
+  | "date"
+  | "select"
+  | "boolean"
+
+interface Field {
+  name: string
+  label: string
+  type: FieldType
+  required: boolean
+}
+
+interface Permit {
+  fields: Field[]
+}
+
+interface AuthorizationTypes {
+  [country: string]: {
+    [permitType: string]: Permit
+  }
+}
 
 // Authorization types with their specific fields
-const authorizationTypes = {
+const authorizationTypes: AuthorizationTypes = {
   australia: {
     "Single-Use Export Permit (SUP)": {
       fields: [
@@ -55,7 +79,7 @@ const authorizationTypes = {
         {
           name: "contractEndDate",
           label: "Contract End Date",
-          type: "Date",
+          type: "date",
           required: true,
         },
       ],
@@ -212,7 +236,7 @@ const authorizationTypes = {
           name: "endUserUndertaking",
           label: "End-User Undertaking",
           type: "file",
-          requried: true,
+          required: true,
         },
         {
           name: "contractReference",
@@ -272,7 +296,7 @@ const authorizationTypes = {
           name: "advancedTechonologyClassification",
           label: "Advanced Technology Classification",
           type: "text",
-          requied: true,
+          required: true,
         },
       ],
     },
@@ -282,7 +306,7 @@ const authorizationTypes = {
           name: "eligibleCountriesList",
           label: "Eligible Countries List",
           type: "text",
-          requried: true,
+          required: true,
         },
         {
           name: "specialControlsCryptographic",
@@ -324,7 +348,7 @@ const authorizationTypes = {
           name: "exportVolumeLimits",
           label: "Export Volume Limist",
           type: "text",
-          requried: true,
+          required: true,
         },
         {
           name: "perApprovedRecipients",
@@ -453,7 +477,7 @@ export const AuthorizationForm = () => {
                   htmlFor="authorizationOrigin"
                   className="block text-sm font-medium text-gray-700 mb-2"
                 >
-                  Country
+                  Authorization Origin
                 </label>
                 <select
                   id="authorizationOrigin"
@@ -511,6 +535,7 @@ export const AuthorizationForm = () => {
                 </label>
                 <input
                   type="text"
+                  maxLength={10}
                   id="authorizationName"
                   name="authorizationName"
                   value={formData.authorizationName}
